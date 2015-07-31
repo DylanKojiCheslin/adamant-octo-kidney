@@ -1,0 +1,15 @@
+<template name="searchFirstNames">
+  {{> esInput index="firstNames" placeholder="Search first names..." }}
+
+  {{> listFirstNames}}
+
+  {{> esLoadMoreButton index="firstNames"}}
+
+  {{#ifEsHasNoResults index="firstNames"}}
+      <div class="no-results">No results found!</div>
+  {{/ifEsHasNoResults}}
+
+  {{#ifEsIsSearching index="firstNames"}}
+          <div>Loading...</div>
+  {{/ifEsIsSearching}}
+</template>
