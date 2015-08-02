@@ -1,6 +1,12 @@
 <template name="searchFullNames">
   {{> esInput index="fullNames" placeholder="Search full names..." }}
 
+  <span>sort by first or last name</span>
+    <select class="sort-select">
+      <option data-sort="first-name">first name</option>
+      <option data-sort="last-name">last name</option>
+    </select>
+
   {{> listFullNames}}
 
   {{> esLoadMoreButton index="fullNames"}}
