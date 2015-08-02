@@ -8,7 +8,7 @@ It can be found at https://github.com/matteodem/meteor-easy-search
 You can use the initEasySearch to create search Indexs to search your documents.
 
 
-'''
+```javascript
 //on client and server
 FirstNames = new Mongo.Collection("firstNames");
 
@@ -18,6 +18,6 @@ FirstNames.initEasySearch(['name'], {
     'use' : 'mongo-db'
 });
 
-'''
+```
 
 You can search mini mongo, Mongo DB, or use elastic search.
