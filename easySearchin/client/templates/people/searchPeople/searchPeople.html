@@ -1,0 +1,17 @@
+<template name="searchPeople">
+  {{> esInput index="people" placeholder="Search People..." }}
+
+  <span>seach within a range</span>
+
+  {{> listPeople}}
+
+  {{> esLoadMoreButton index="people"}}
+
+  {{#ifEsHasNoResults index="people"}}
+      <div class="no-results">No results found!</div>
+  {{/ifEsHasNoResults}}
+
+  {{#ifEsIsSearching index="people"}}
+          <div>Loading...</div>
+  {{/ifEsIsSearching}}
+</template>

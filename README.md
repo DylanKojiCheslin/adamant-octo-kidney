@@ -13,6 +13,7 @@ This readme will cover the following:
 
 -basic search
 -sorting
+-searching within a range
 
 
 Basic Search
@@ -72,3 +73,5 @@ The default number of items displayed is 20.
 
 
 Sorting
+
+Searching within a range
