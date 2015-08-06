@@ -11,10 +11,10 @@ EasySearch.createSearchIndex('people', {
   'query': function(searchString, opts) {
     var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
     if (this.props.lowerLimit) {
-      query.people = {$gt: this.props.lowerLimit};
+      query.age = {$gt: this.props.lowerLimit};
     }
     if (this.props.upperLimit) {
-      query.people = {$lt: this.props.upperLimit};
+      query.age = {$lt: this.props.upperLimit};
     }
     return query;
   }

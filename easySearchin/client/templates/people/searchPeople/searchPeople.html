@@ -4,13 +4,13 @@
   <span>seach within a range</span>
   <form class="ageLimitFormArea" action="index.html" method="post">
     <div class="range-selection">
-      <input class="lowerLimitSelection" type="number" name="lowerQuantity" min="1" max="125">
-      <input class="upperLimitSelection" type="number" name="upperQuantity" min="1" max="125">
+      <input class="lowerQuantity" type="number" name="lowerQuantity" min="1" max="125">
+      <input class="upperQuantity" type="number" name="upperQuantity" min="1" max="125">
       <input type="reset" value="Clear Form" />
       <input type="submit" value="Add/Update range" />
     </div>
   </form>
-  
+
   {{> listPeople}}
 
   {{> esLoadMoreButton index="people"}}
