@@ -9,9 +9,9 @@ Template.searchPeople.events({
     var possibleLowerLimit = 0;
     var possibleUpperLimit = 0;
 
-    possibleLowerLimit    = parseInt(event.target.lowerQuantity.value);
+    possibleLowerLimit = parseInt(event.target.lowerQuantity.value);
 
-    possibleHigherLimit   = parseInt(event.target.upperQuantity.value);
+    possibleUpperLimit = parseInt(event.target.upperQuantity.value);
 
 
   EasySearch.changeProperty('people', 'lowerLimit', possibleLowerLimit);

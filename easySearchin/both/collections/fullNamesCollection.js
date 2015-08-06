@@ -15,7 +15,7 @@ EasySearch.createSearchIndex('fullNames', {
       return { 'lastName': 1 };
     }
     // default by first name
-    return { 'score': -1 };
+    return { 'firstName': 1 };
   },
   'query': function(searchString, opts) {
     // Default query that will be used for the mongo-db selector
