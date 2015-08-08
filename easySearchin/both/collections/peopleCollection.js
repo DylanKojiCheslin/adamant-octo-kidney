@@ -1,8 +1,8 @@
 People = new Mongo.Collection("people");
 
 EasySearch.createSearchIndex('people', {
-  'collection': People, // instanceof Meteor.Collection
-  'field': ['givenName', 'famlyName', 'age'], // array of fields to be searchable
+  'collection': People,
+  'field': ['givenName', 'famlyName'],
   'limit': 10,
   'props': {
     'lowerLimit' : 0,

@@ -21,11 +21,11 @@ Basic Search
 
 This section describes the firstNames files and the simplest search example.
 
-Indexs are used to define how searches work and how you reffer to the data found
+Indexs are used to define how searches work and how you refine the data found
 in you search.
 
 You can use search engenes- mini mongo, Mongo DB, elastic search, or custom.
-The default is mini-mongo. MongoDb Searchs the whole collection.
+The default is mini-mongo. MongoDb Searches the whole collection.
 Mini mongo searches subscriptions.
 
 
@@ -85,28 +85,42 @@ name being the index name and options being how to configure the search index.
 ```javascript
 
 EasySearch.createSearchIndex('fullNames', {
-  'collection': FullNames, // instanceof Meteor.Collection
-  'field': ['firstName', 'lastName'], // array of fields to be searched
+  'collection': FullNames,
+  'field': ['firstName', 'lastName'],
   'limit': 10,
   'use' : 'mongo-db',
   'props': {
     'sortBy' : 'first-name'
   },
   'sort': function() {
+    //checks to see what props.sortBy is set to
     if (this.props.sortBy === 'first-name') {
+      //change the Sort Specifier
       return { 'firstName': 1 };
     }  else if (this.props.sortBy === 'last-name') {
       return { 'lastName': 1 };
     }
     // default by first name
-    return { 'score': -1 };
+    return { 'firstName': 1 };
   }
 });
 
 ```
-The 'props' option is a place to save custom propertys to the index.
-The 'sort' option decides how to order the search results.
+
+The 'collection' option is what Meteor Collection will be indexed.
+
+The 'feild' option is an array of fields to be searched. You only need to include
+feilds that will be typed in by the user.
+
+The 'limit' option defines how many results are in the returned array.
+
+The 'props' option is a place to save custom properties to the index.
+
 The 'use' option is what kind of search engine you want to use:mongo-db,
 minimongo, elastic search, or custom.
+
+The 'sort' option decides how to order the search results by defining the
+Sort Specifiers that will be returned.
+
 
 Searching within a range
