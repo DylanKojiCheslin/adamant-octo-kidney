@@ -8,7 +8,7 @@ EasySearch.createSearchIndex('people', {
     'lowerLimit' : 0,
     'upperLimit' : 0
   },
-  'query': function(searchString, opts) {
+  'query': function(searchString) {
     var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
     if (this.props.lowerLimit) {
       query.age = {$gt: this.props.lowerLimit};

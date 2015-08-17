@@ -109,8 +109,8 @@ EasySearch.createSearchIndex('fullNames', {
 
 The 'collection' option is what Meteor Collection will be indexed.
 
-The 'feild' option is an array of fields to be searched. You only need to include
-feilds that will be typed in by the user.
+The 'field' option is an array of fields to be searched. You only need to include
+fields that will be typed in by the user.
 
 The 'limit' option defines how many results are in the returned array.
 
@@ -122,5 +122,123 @@ minimongo, elastic search, or custom.
 The 'sort' option decides how to order the search results by defining the
 Sort Specifiers that will be returned.
 
+HTML
+```html
+
+<span>sort by first or last name</span>
+  <select class="sort-select">
+    <option data-sort="first-name">first name</option>
+    <option data-sort="last-name">last name</option>
+  </select>
+
+```
+
+Client side code to modify the props
+
+```javascript
+
+Template.searchFullNames.events({
+
+  'change .sort-select': function(e) {
+    e.preventDefault();
+    //grab the index
+    var instance = EasySearch.getComponentInstance({
+      index: 'fullNames'
+    });
+    //change prop              index name   prop
+    EasySearch.changeProperty('fullNames', 'sortBy',
+    //new value for prop
+    $(e.target).children(':selected').data('sort')
+    );
+    //paginate to start
+    instance.paginate(1);
+    //rerun search
+    instance.triggerSearch();
+  }
+});
+
+```
+
 
 Searching within a range
+
+This section describes the people files and how to have a ranged search.
+The example shows search withing a number range.
+
+```javascript
+
+EasySearch.createSearchIndex('people', {
+  'collection': People,
+  'field': ['givenName', 'famlyName'],
+  'limit': 10,
+  'props': {
+    'lowerLimit' : 0,
+    'upperLimit' : 0
+  },
+  'query': function(searchString) {
+    //grabs the default query
+    var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+    //falsey control logic
+    if (this.props.lowerLimit) {
+      // .feildname = selector object
+      query.age = {$gt: this.props.lowerLimit};
+    }
+    if (this.props.upperLimit) {
+      query.age = {$lt: this.props.upperLimit};
+    }
+    return query;
+  }
+});
+
+```
+The query option of a search index must return
+a selector object.
+
+HTML
+```html
+<form class="ageLimitFormArea" action="index.html" method="post">
+  <div class="range-selection">
+    <input class="lowerQuantity" type="number" name="lowerQuantity" min="1" max="125">
+    <input class="upperQuantity" type="number" name="upperQuantity" min="1" max="125">
+    <input type="reset" value="Clear Form" />
+    <input type="submit" value="Add/Update range" />
+  </div>
+</form>
+```
+
+Client side js to change the props
+
+```javascript
+Template.searchPeople.events({
+
+"submit .ageLimitFormArea": function(e){
+
+
+  e.preventDefault();
+
+    //default falsey vars
+    var possibleLowerLimit = 0;
+    var possibleUpperLimit = 0;
+
+    //maybe set the defalut vars to something truthy
+    possibleLowerLimit = parseInt(event.target.lowerQuantity.value);
+    possibleUpperLimit = parseInt(event.target.upperQuantity.value);
+
+  //change prop             index      prop name    what value to set prop to
+  EasySearch.changeProperty('people', 'lowerLimit', possibleLowerLimit);
+  EasySearch.changeProperty('people', 'upperLimit', possibleUpperLimit);
+
+  //grab the index your editing
+  var instance = EasySearch.getComponentInstance({
+    index: 'people'
+  });
+
+  //set the pagination to the first page
+  instance.paginate(1);
+
+  //trigger the search again
+  instance.triggerSearch();
+  }
+});
+
+```

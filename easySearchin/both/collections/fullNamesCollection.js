@@ -15,11 +15,6 @@ EasySearch.createSearchIndex('fullNames', {
       return { 'lastName': 1 };
     }
     return { 'firstName': 1 };
-  },
-  'query': function(searchString, opts) {
-    var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
-
-    return query;
   }
 });
 //this is for the autoform package, and not relevent to easy-search
