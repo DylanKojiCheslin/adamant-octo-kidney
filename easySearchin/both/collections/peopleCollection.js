@@ -1,6 +1,6 @@
 People = new Mongo.Collection("people");
 
-EasySearch.createSearchIndex('people', {
+EasySearch.createSearchIndex('peopleIndex', {
   'collection': People,
   'field': ['givenName', 'famlyName'],
   'limit': 10,

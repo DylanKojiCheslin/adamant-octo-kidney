@@ -1,5 +1,5 @@
 <template name="searchPeople">
-  {{> esInput index="people" placeholder="Search People..." }}
+  {{> esInput index="peopleIndex" placeholder="Search People..." }}
 
   <span>seach within a range</span>
   <form class="ageLimitFormArea" action="index.html" method="post">
@@ -13,13 +13,13 @@
 
   {{> listPeople}}
 
-  {{> esLoadMoreButton index="people"}}
+  {{> esLoadMoreButton index="peopleIndex"}}
 
-  {{#ifEsHasNoResults index="people"}}
+  {{#ifEsHasNoResults index="peopleIndex"}}
       <div class="no-results">No results found!</div>
   {{/ifEsHasNoResults}}
 
-  {{#ifEsIsSearching index="people"}}
+  {{#ifEsIsSearching index="peopleIndex"}}
           <div>Loading...</div>
   {{/ifEsIsSearching}}
 </template>

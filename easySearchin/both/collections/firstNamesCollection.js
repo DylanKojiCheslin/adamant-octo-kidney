@@ -1,6 +1,6 @@
 FirstNames = new Mongo.Collection("firstNames");
 
-FirstNames.initEasySearch('firstNames');
+FirstNames.initEasySearch('firstNamesIndex');
 
 //this is for the autoform package, and not relevent to easy search
 FirstNames.attachSchema(new SimpleSchema({

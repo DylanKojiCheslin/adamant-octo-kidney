@@ -1,6 +1,6 @@
 FullNames = new Mongo.Collection("fullNames");
 
-EasySearch.createSearchIndex('fullNames', {
+EasySearch.createSearchIndex('fullNamesIndex', {
   'collection': FullNames,
   'field': ['firstName', 'lastName'],
   'limit': 10,

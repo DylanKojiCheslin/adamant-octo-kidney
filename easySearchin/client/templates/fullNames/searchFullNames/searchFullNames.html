@@ -1,5 +1,5 @@
 <template name="searchFullNames">
-  {{> esInput index="fullNames" placeholder="Search full names..." }}
+  {{> esInput index="fullNamesIndex" placeholder="Search full names..." }}
 
   <span>sort by first or last name</span>
     <select class="sort-select">
@@ -9,13 +9,13 @@
 
   {{> listFullNames}}
 
-  {{> esLoadMoreButton index="fullNames"}}
+  {{> esLoadMoreButton index="fullNamesIndex"}}
 
-  {{#ifEsHasNoResults index="fullNames"}}
+  {{#ifEsHasNoResults index="fullNamesIndex"}}
       <div class="no-results">No results found!</div>
   {{/ifEsHasNoResults}}
 
-  {{#ifEsIsSearching index="fullNames"}}
+  {{#ifEsIsSearching index="fullNamesIndex"}}
           <div>Loading...</div>
   {{/ifEsIsSearching}}
 </template>

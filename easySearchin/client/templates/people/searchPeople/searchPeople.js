@@ -11,11 +11,11 @@ Template.searchPeople.events({
     possibleUpperLimit = parseInt(event.target.upperQuantity.value);
 
 
-  EasySearch.changeProperty('people', 'lowerLimit', possibleLowerLimit);
-  EasySearch.changeProperty('people', 'upperLimit', possibleUpperLimit);
+  EasySearch.changeProperty('peopleIndex', 'lowerLimit', possibleLowerLimit);
+  EasySearch.changeProperty('peopleIndex', 'upperLimit', possibleUpperLimit);
 
   var instance = EasySearch.getComponentInstance({
-    index: 'people'
+    index: 'peopleIndex'
   });
 
   instance.paginate(1);

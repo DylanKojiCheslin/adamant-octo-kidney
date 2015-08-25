@@ -6,8 +6,8 @@ This is an example app showing the use of the Easy Search Package.
 It can be found at https://github.com/matteodem/meteor-easy-search
 
 This Example app will aim to split all functionality into easy to copy and use
-bite sized Examples. I will aim to have a unique name for every thing, with the
-exception of the indexs having the same name as the collections they search.
+bite sized Examples. I will aim to have a unique name for every thing, includeing
+search indexs. Each example will have its own collection and folder in the client.
 
 This readme will cover the following:
 
