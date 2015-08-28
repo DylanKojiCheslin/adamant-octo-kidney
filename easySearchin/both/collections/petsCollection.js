@@ -19,11 +19,11 @@ EasySearch.createSearchIndex('petsIndex', {
     if (this.props.upperLimit) {
       query.petAge = {$lt: this.props.upperPetAgeLimit};
     }
-    if (this.props.typeFilter){
-      query.petType { $in: this.props.typeFilter}
-    },
-    if (this.props.genderFilter){
-      query.petGender {$in: this.props.genderFilter}
+    if (this.props.typeFilter) {
+      query.petType = { $in: this.props.typeFilter}
+    }
+    if (this.props.genderFilter) {
+      query.petGender = {$in: this.props.genderFilter}
     }
     return query;
   }
@@ -38,7 +38,7 @@ Pets.attachSchema(new SimpleSchema({
   },
   petType: {
     type: String,
-    label: 'Famly name'
+    label: 'Famly name',
     allowedValues: ['Dog', 'Cat', 'Fist', 'Turtle']
   },
   petGender: {
