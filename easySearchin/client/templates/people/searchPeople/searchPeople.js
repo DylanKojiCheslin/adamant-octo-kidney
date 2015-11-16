@@ -1,6 +1,6 @@
 Template.searchPeople.events({
 
-"submit .ageLimitFormArea": function(e){
+"submit #peopleAgeLimitFormArea": function(e){
 
   e.preventDefault();
 
@@ -21,4 +21,14 @@ Template.searchPeople.events({
   instance.paginate(1);
   instance.triggerSearch();
   }
+  ,
+    "click #clear-people-age-form": function(e){
+      EasySearch.changeProperty('peopleIndex', 'lowerLimit', 0);
+      EasySearch.changeProperty('peopleIndex', 'upperLimit', 0);
+      var instance = EasySearch.getComponentInstance({
+        index: 'peopleIndex'
+      });
+      instance.triggerSearch();
+
+    }
 });

@@ -8,21 +8,20 @@ EasySearch.createSearchIndex('petsIndex', {
     'lowerPetAgeLimit' : 0,
     'upperPetAgeLimit' : 0,
     'typeFilter' : [],
-    'genderFilter' : [],
-
+    'genderFilter' : []
   },
   'query': function(searchString) {
     var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
-    if (this.props.lowerLimit) {
+    if (this.props.lowerPetAgeLimit) {
       query.petAge = {$gt: this.props.lowerPetAgeLimit};
     }
     if (this.props.upperLimit) {
       query.petAge = {$lt: this.props.upperPetAgeLimit};
     }
-    if (this.props.typeFilter) {
+    if (this.props.typeFilter.lenght > 0) {
       query.petType = { $in: this.props.typeFilter}
     }
-    if (this.props.genderFilter) {
+    if (this.props.genderFilter.lenght > 0) {
       query.petGender = {$in: this.props.genderFilter}
     }
     return query;

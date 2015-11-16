@@ -1,0 +1,38 @@
+<template name="searchPets">
+  {{> esInput index="petsIndex" placeholder="Search pets..." }}
+
+  <form id="petsAgeLimitFormArea" action="index.html" method="post">
+    <div class="range-selection">
+      <input class="lowerQuantity" type="number" name="lowerQuantity" min="1" max="125">
+      <input class="upperQuantity" type="number" name="upperQuantity" min="1" max="125">
+      <input type="reset" value="Clear Form" />
+      <input type="submit" value="Add/Update range" />
+    </div>
+  </form>
+
+  <span>type of pets</span>
+      <div class="type-pick">
+        <label for='Dog-checkbox'>Dog</label>
+        <input id='Dog-checkbox' type="checkbox" data-type='Dog'>
+        <label for='Cat-checkbox'>Cat</label>
+        <input id='Cat-checkbox' type="checkbox" data-type="Cat">
+        <label for='Fish-checkbox'>Fish</label>
+        <input id='Fish-checkbox' type="checkbox" data-type="Fish">
+        <label for='Turtle-checkbox'>Turtle</label>
+        <input id='Turtle-checkbox' type="checkbox" data-type="Turtle">
+      </div>
+
+
+
+  {{> listPets}}
+
+  {{> esLoadMoreButton index="petsIndex"}}
+
+  {{#ifEsHasNoResults index="petsIndex"}}
+      <div class="no-results">No results found!</div>
+  {{/ifEsHasNoResults}}
+
+  {{#ifEsIsSearching index="petsIndex"}}
+          <div>Loading...</div>
+  {{/ifEsIsSearching}}
+</template>
