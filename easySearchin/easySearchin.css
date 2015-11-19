@@ -2,3 +2,7 @@
 .form-control{
   width: 20em;
 }
+
+.outline{
+  border-style: solid;
+}
