@@ -15,19 +15,35 @@ Template.searchPets.events({
     instance.paginate(1);
     instance.triggerSearch();
   },
-  "change .type-pick :checkbox": function(e){
+  "change .type-pick": function(e){
     e.preventDefault();
-    if ($(e.target.checked)) {
-      var newtype = {type : e.target.data('type')};
-      petsIndex.props.typeFilter.push(newtype);
+    var instance = EasySearch.getComponentInstance({
+      index: 'petsIndex'
+    });
+    var newType = {petType : $(e.target).data('type')}
+    var isChecked = ($(e.target).is(':checked'));
+    if (isChecked) {
+      var oldTypes = EasySearch.getIndex('petsIndex').props['typeFilter'];
+      if (!_.findWhere(oldTypes, newType)) {
+        oldTypes.push(newType);
+        EasySearch.changeProperty('petsIndex', 'typeFilter', oldTypes);
+        instance.paginate(1);
+        instance.triggerSearch();
+      }
+    }else {
+      //check if newType is in typeFilter
+      var oldTypes = EasySearch.getIndex('petsIndex').props['typeFilter'];
+      console.log(oldTypes);
+      if (_.findWhere(oldTypes, newType)) {
+      var typesOfPets = [];
+      typesOfPets = _.difference(oldTypes, newType);
+      typesOfPets = _.without(typesOfPets, _.findWhere(oldTypes, newType))
+
+        console.log(typesOfPets);
+      EasySearch.changeProperty('petsIndex', 'typeFilter', typesOfPets);
       instance.paginate(1);
       instance.triggerSearch();
-    }
-    else {
-      var removeThisType = {type: e.target.data('type')};
-      var typesOfPets = _.without(typesOfPets, _.findWhere(typesOfPets, removeThisType));
-      instance.paginate(1);
-      instance.triggerSearch();
+      }
     }
   }
   // ,

@@ -2,7 +2,7 @@ Pets = new Mongo.Collection("pets");
 
 EasySearch.createSearchIndex('petsIndex', {
   'collection': Pets,
-  'field': ['petName', 'petType'],
+  'field': ['petName'],
   'limit': 10,
   'props': {
     'lowerPetAgeLimit' : 0,
@@ -12,18 +12,31 @@ EasySearch.createSearchIndex('petsIndex', {
   },
   'query': function(searchString) {
     var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+    console.log(
+      this.props.lowerPetAgeLimit
+    );
     if (this.props.lowerPetAgeLimit) {
       query.petAge = {$gt: this.props.lowerPetAgeLimit};
     }
-    if (this.props.upperLimit) {
+    console.log(
+      this.props.upperPetAgeLimit
+    );
+    if (this.props.upperPetAgeLimit) {
       query.petAge = {$lt: this.props.upperPetAgeLimit};
     }
-    if (this.props.typeFilter.lenght > 0) {
-      query.petType = { $in: this.props.typeFilter}
+    console.log(
+      this.props.typeFilter
+    );
+    if (this.props.typeFilter) {
+      query.petType = {$in: this.props.typeFilter}
     }
+    console.log(
+      this.props.genderFilter
+    );
     if (this.props.genderFilter.lenght > 0) {
       query.petGender = {$in: this.props.genderFilter}
     }
+    console.log(query);
     return query;
   }
 });
@@ -37,7 +50,7 @@ Pets.attachSchema(new SimpleSchema({
   },
   petType: {
     type: String,
-    label: 'Famly name',
+    label: 'Type of pet',
     allowedValues: ['Dog', 'Cat', 'Fist', 'Turtle']
   },
   petGender: {
